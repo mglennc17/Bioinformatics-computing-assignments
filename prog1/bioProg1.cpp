@@ -1,4 +1,4 @@
-#include "prog1.h"
+#include "bioProg1.h"
 using namespace std;
 
 int main() {
