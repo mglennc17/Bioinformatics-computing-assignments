@@ -7,6 +7,7 @@ using namespace std;
 #define MATCH 2
 #define MISMATCH -1
 #define MAX(a, b) (a > b ? a : b)
+#define MATCH(a,b) (a == b ? a : b)
 
 const char queryFileName[] = "F25-Prog4-query.fa";
 const char databaseFileName[] = "F25-Prog4-database.fa";
@@ -38,18 +39,18 @@ int score() {
     int best_i;
     int best_j;
     V = (int*)malloc(sizeof(int[strlen(query) * strlen(database)]));
-    T = (int*)malloc(sizeof(int[strlen(query) * strlen(database)]));
+    T = (int*)malloc(sizeof(int[strlen(database)]));
 
     memset(V, 0, strlen(query) * strlen(database));
     memset(T, 0, strlen(query) * strlen(database));
 
-    for (int i = 0; i < strlen(query); i++) { 
-	for (int j = 0; j < strlen(database); j++) {	    
+    for (int i = 1; i < strlen(query); i++) { 
+	for (int j = 1; j < strlen(database); j++) {	    
 	    
-	    V[j + (i * strlen(database))] = MAX(0, V[j + ((i - 1) * strlen(database))] - 1);
-	    V[j + (i * strlen(database))] = MAX(V[j + (i * strlen(database))], V[j - 1 + ((i - 1) * strlen(database))] - 1);
-	    V[j + (i * strlen(database))] = MAX(V[j + (i * strlen(database))], 
-	    T[];
+	    
+	    V[j + (i * strlen(database))] = MAX(0, V[j - 1 + ((i - 1) * strlen(database))] + MATCH(query[i], database[j]));
+	    V[j + (i * strlen(database))] = MAX(V[j + (i * strlen(database))], V[j - 1 + ((i - 1) * strlen(database))] + MATCH(query[i], '-');
+	    V[j + (i * strlen(database))] = MAX(V[j + (i * strlen(database))],V[j + ((i - 1) * strlen(database))] + MATCH('-', database[j])); 
 
         }
     }
